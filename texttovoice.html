@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="voice.css">
+</head>
+<body>
+<div class="container">
+<textarea id="text" placeholder="enter the text"></textarea>
+    <div id="wordCountDisplay">Word Count: 0</div>
+<button id="speak">speak</button>
+  </div>
+<script>
+
+  const speak = document.getElementById("speak");
+  const text = document.getElementById("text");
+  const wordCountDisplay = document.getElementById("wordCountDisplay");
+  const speech = new SpeechSynthesisUtterance
+  speak.addEventListener("click",()=>{
+  speech.text = text.value;
+  window.speechSynthesis.speak(speech);
+  })
+  text.addEventListener("input", () => {
+      const inputText = text.value.trim();
+      const words = inputText === "" ? [] : inputText.split(/\s+/);
+      const wordCount = words.length;
+      wordCountDisplay.textContent = `Word Count: ${wordCount}`;
+    });
+
+</script>
+
+
+</body>
+</html>
